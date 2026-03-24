@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+    <!-- MissionQA Test Suite -->
+
+<!--
+       Full Suite : Sequential/Parallel
+       Runner : TestRunner
+       Scans  : features/ui/ + features/api/
+       Tags   : all
+  -->
+
+<suite name="MissionQA Suite" verbose="1">
+
+      <test name="Full Suite — UI + API">
+           <classes>
+               <class name="runners.TestRunner"/>
+           </classes>
+       </test>
+
+</suite>
