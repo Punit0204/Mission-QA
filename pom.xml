@@ -63,7 +63,6 @@
 
     <build>
 
-        <!-- THIS is why config.properties was not found -->
         <!-- testResources MUST be inside build          -->
         <testResources>
             <testResource>
