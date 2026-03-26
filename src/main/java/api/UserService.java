@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 public class UserService {
 
-    // ── HTTP Methods ──────────────────────────────────────────
+    // HTTP Methods 
 
     public ApiResponse getUsers(int page) {
         return new ApiResponse(
@@ -109,8 +109,7 @@ public class UserService {
                         .extract().response());
     }
 
-    // ── Assertion Helpers ─────────────────────────────────────
-
+    // Assertion Helpers
     public void verifyStatusCode(ApiResponse response, int expectedCode) {
         Assert.assertEquals(
                 response.getStatusCode(),
