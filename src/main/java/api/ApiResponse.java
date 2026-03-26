@@ -10,13 +10,13 @@ public class ApiResponse {
         this.response = response;
     }
 
-    // ── Status ────────────────────────────────────────────────
+    // Status 
 
     public int getStatusCode() {
         return response.getStatusCode();
     }
 
-    // ── Field extraction ──────────────────────────────────────
+    // Field extraction 
 
     public String getString(String path) {
         return response.jsonPath().getString(path);
@@ -38,14 +38,13 @@ public class ApiResponse {
         return response.jsonPath().get(path);
     }
 
-    // ── Body ──────────────────────────────────────────────────
+    // Body 
 
     public String getBodyAsString() {
         return response.getBody().asString();
     }
 
-    // ── Raw access — use sparingly ─────────────────────────────
-
+    // Raw access — use sparingly 
     // Only if something cannot be expressed via above methods
     Response getRaw() {
         return response;
