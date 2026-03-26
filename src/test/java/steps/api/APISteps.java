@@ -20,8 +20,7 @@ public class APISteps {
     private List<Integer> allUserIds;
     private int           totalUserCount;
 
-    // ── LIST USERS ────────────────────────────────────────────
-
+    // LIST USERS
     // Empty by design — base URI configured in ApiClient, no connection to establish
     @Given("I am connected to the Reqres API")
     public void iAmConnectedToTheReqresAPI() {}
@@ -42,8 +41,7 @@ public class APISteps {
         userService.verifyTotalCountMatchesUniqueIds(totalUserCount, allUserIds);
     }
 
-    // ── SINGLE USER ───────────────────────────────────────────
-
+    // SINGLE USER 
     @When("I request details for user with ID {int}")
     public void iRequestDetailsForUserWithID(int userId) {
         response = userService.getUserById(userId);
@@ -57,8 +55,7 @@ public class APISteps {
         userService.verifyUserDetails(response, headers, values);
     }
 
-    // ── CREATE USER ───────────────────────────────────────────
-
+    // CREATE USER
     @When("I create a user with name {string} and job {string}")
     public void iCreateAUserWithNameAndJob(String name, String job) {
         response = userService.createUser(name, job);
@@ -74,8 +71,7 @@ public class APISteps {
         userService.verifyNonEmptyFields(response, List.of("id", "createdAt"));
     }
 
-    // ── UPDATE USER ───────────────────────────────────────────
-
+    // UPDATE USER 
     // PUT /users/{id} — verifies updatedAt is returned
     @When("I update user with ID {int} with name {string} and job {string}")
     public void iUpdateUserWithIdWithNameAndJob(int userId, String name, String job) {
@@ -87,16 +83,14 @@ public class APISteps {
         userService.verifyNonEmptyFields(response, List.of("updatedAt"));
     }
 
-    // ── DELETE USER ───────────────────────────────────────────
-
+    // DELETE USER 
     // 204 No Content — response body must be empty, no JSON returned
     @When("I delete user with ID {int}")
     public void iDeleteUserWithId(int userId) {
         response = userService.deleteUser(userId);
     }
 
-    // ── LOGIN ─────────────────────────────────────────────────
-
+    // LOGIN
     @When("I login to the API with email {string} and password {string}")
     public void iLoginToTheAPIWithEmailAndPassword(String email, String password) {
         response = userService.login(email, password);
@@ -118,8 +112,7 @@ public class APISteps {
         userService.verifyErrorMessage(response, expectedError);
     }
 
-    // ── DELAYED RESPONSE ──────────────────────────────────────
-
+    // DELAYED RESPONSE
     // Validates API still returns valid data under artificial server delay
     @When("I request the user list with a response delay of {int} seconds")
     public void iRequestTheUserListWithAResponseDelayOfSeconds(int delaySeconds) {
@@ -136,8 +129,7 @@ public class APISteps {
         userService.verifyAllUsersHaveNonEmptyFields(response, dataTable.asList());
     }
 
-    // ── SHARED ────────────────────────────────────────────────
-
+    // SHARED 
     // Single binding reused across all 11 scenarios
     @Then("the response status code should be {int}")
     public void theResponseStatusCodeShouldBe(int expectedCode) {
