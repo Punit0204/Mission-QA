@@ -44,26 +44,6 @@ public class LoginPage extends BasePage {
                 "Error message mismatch on login page");
     }
 
-    // "products_page" → verifies user landed on inventory page
-    // "locked_error"  → verifies locked-out error banner is shown
-    public void verifyLoginResult(String resultCode) {
-        switch (resultCode) {
-            case "products_page":
-                wait.untilUrlContains("inventory");
-                Assert.assertTrue(
-                        driver.getCurrentUrl().contains("inventory"),
-                        "Expected products page after login but got: "
-                                + driver.getCurrentUrl());
-                break;
-            case "locked_error":
-                verifyLockedError();
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Unknown login result code: '" + resultCode
-                                + "'. Valid values: products_page, locked_error");
-        }
-    }
 
     // Verifies the locked-out error message shown for locked_out_user
     public void verifyLockedError() {
@@ -71,23 +51,5 @@ public class LoginPage extends BasePage {
                 getText(errorMessage),
                 "Epic sadface: Sorry, this user has been locked out.",
                 "Locked-out error message mismatch");
-    }
-
-    // Routes a page code (e.g. "products_page") to the correct page assertion.
-    // Used by Scenario Outline — "I should land on the {string} page"
-    public void verifyLandingPage(String pageCode) {
-        switch (pageCode) {
-            case "products_page":
-                wait.untilUrlContains("inventory");
-                Assert.assertTrue(
-                        driver.getCurrentUrl().contains("inventory"),
-                        "Expected products page but got: "
-                                + driver.getCurrentUrl());
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Unknown page code: '" + pageCode
-                                + "'. Valid values: products_page");
-        }
     }
 }

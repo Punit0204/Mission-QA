@@ -75,19 +75,4 @@ public class ProductsPage extends BasePage {
         click(cartIcon);
         wait.untilUrlContains("cart");
     }
-
-    // Returns price of a specific item by name
-    // Used by CheckoutPage for total price calculation
-    public double getItemPrice(String itemName) {
-        for (int i = 0; i < this.itemNames.size(); i++) {
-            if (getText(this.itemNames.get(i))
-                    .equalsIgnoreCase(itemName)) {
-                return Double.parseDouble(
-                        getText(itemPrices.get(i))
-                                .replace("$", ""));
-            }
-        }
-        throw new RuntimeException(
-                "Item not found on products page: " + itemName);
-    }
 }

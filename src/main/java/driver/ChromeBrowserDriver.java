@@ -4,7 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import utils.ConfigManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +32,12 @@ public class ChromeBrowserDriver implements BrowserDriver {
         );
         options.setExperimentalOption(
                 "excludeSwitches", new String[]{"enable-automation"});
+
+        //  HEADLESS SUPPORT
+        if (ConfigManager.getInstance().isHeadless()) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1920,1080");
+        }
 
         return new ChromeDriver(options);
     }

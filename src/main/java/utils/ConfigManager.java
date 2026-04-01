@@ -25,6 +25,10 @@ public class ConfigManager {
                     "Failed to load config.properties — " + e.getMessage(), e);
         }
     }
+    // For Headless Run
+    public boolean isHeadless() {
+        return Boolean.parseBoolean(get("headless"));
+    }
 
     // single access point — lazy init, thread-safe enough for test scope
     public static ConfigManager getInstance() {
